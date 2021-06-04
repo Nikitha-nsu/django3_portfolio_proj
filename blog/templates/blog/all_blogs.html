@@ -1,0 +1,16 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+<center>
+<h1 style = "font-family: 'Mate SC', serif; background-color:powderblue;"> Bruno has {{blogs.count}} blog{{blogs.count|pluralize}}</h1>
+</center>
+
+<div class="row justify-content-center my-3"; style = "background-color:MistyRose;">
+  <div class="container" style = "background-color:lavender; padding:50px">
+  {% for blog in blogs %}
+  <a href = "{% url 'blog:detail' blog.id %}" style = "font-family: 'Pacifico', cursive;" ><h2> {{blog.title}} </h2></a>
+  <h5 >{{blog.date|date:'M d Y'}}</h5>
+  <p style = "font-family: 'Satisfy', cursive; font-size:20px; color: purple">{{blog.description|striptags|truncatechars:150}}</p>
+  {% endfor %}
+  </div>
+{% endblock %}
+</div>

@@ -1,0 +1,40 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+
+<center>
+  <h1 style = "font-family: 'Mate SC', serif; background-color:powderblue;"> This is my Doggo's Portfolio page</h1>
+</center>
+
+<div class="row justify-content-center my-3"; style = "background-color:MistyRose;">
+<center>
+<a href = "{% url 'blog:all_blogs' %}" style= " font-weight:bold; font-size:30px;font-family: 'Bebas Neue', cursive; ">Read about me...</a>
+</center>
+</div>
+
+{% load static %}
+<div class="row justify-content-center my-3"; style = "background-color:LightCyan">
+<div class="col-lg-4 col-md-6" >
+<img src = "{% static 'portfolio/dog.jpg' %}" style = "background-color:black;padding:20px;" height=500px width=600px ><br><br>
+<center>
+<a href = "{% static 'portfolio/BrunoResume.pdf'%}" class="link-danger" style = "  font-family: 'Pattaya'; font-size:30px;">BrunoResume</a><br><br>
+</center>
+</div>
+
+
+<marquee width="100%" behaviour = "scroll" scrollamount="12" direction="left" height="50px" class="mt-5" style = "cursive;font-size:30px; background-color:	#ffe6e6;">Portfolio</marquee>
+<hr>
+<div class="row" style = "background-color:lavender;padding:5px; margin:10px" >
+  {% for project in projects %}
+  <div class="col-lg-4 col-md-6">
+  <h2 style= "font-family: 'Sigmar One', cursive;" >{{project.title}}</h2>
+  <img src = "{{project.image.url}}"  height = 400 width = 500>
+  <br><p style = "font-family: 'Lobster', cursive; font-size:30px">{{project.description}}</p>
+
+  {% if project.url %}
+  <br><a href = "{{ project.url }}" style = "font-family: 'Lobster'; font-size:25px";>Get me Roses...</a>
+  {% endif %}
+  </div>
+  {% endfor %}
+</div>
+</hr>
+  {% endblock %}
